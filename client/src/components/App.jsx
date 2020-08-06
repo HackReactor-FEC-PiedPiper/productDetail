@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,12 +7,12 @@ class App extends React.Component {
   }
 
   render() {
-    return (<div>
-      <h1 id="title">Hey there, World</h1>
-    </div>
-    )
+    return (
+      <div>
+        <h1 id="title">Heyyyo, World</h1>
+      </div>
+    );
   }
-
 }
 
 export default App;
