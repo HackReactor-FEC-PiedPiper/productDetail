@@ -1,3 +1,4 @@
+
 module.exports = {
   entry: __dirname + '/client/src/index.jsx',
   output: {
@@ -26,6 +27,10 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    publicPath: '/assets/',
+    contentBase: __dirname + '/client/public'
   },
   resolve: {
     extensions: ['.js', '.jsx']

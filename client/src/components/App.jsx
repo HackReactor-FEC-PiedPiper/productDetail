@@ -1,4 +1,8 @@
 import React from 'react';
+import Images from './Images';
+import Info from './Info';
+import Styles from './Styles';
+import AddToCart from './AddToCart';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,8 +12,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 id="title">Heyyyo, World</h1>
+      <div className="container">
+        <div className="info"><Info /></div>
+        <div className="styles"><Styles /></div>
+        <div className="images"><Images /></div>
+        <div className="a2c"><AddToCart /></div>
       </div>
     );
   }
