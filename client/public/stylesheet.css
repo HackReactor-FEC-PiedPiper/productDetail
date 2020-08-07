@@ -1,18 +1,24 @@
 .container {
   display: grid;
   grid-template-columns: [start] 8% [line1] 52% [line2] 32% [line3] 8% [end];
-  grid-template-rows: [start] 25px [row1-start] 185px [row1-end row2-start] 185px [row2-end row3-start] 185px [row3-end] 25px [end];
+  grid-template-rows: [start] 25px [row1-start] 185px [row1-end row2-start] 185px [row2-end row3-start] 185px [row3-end] 75px [end];
   gap: 20px;
   grid-template-areas:
   ". . . ."
   ". images info ."
   ". images styles ."
   ". images a2c ."
-  ". . . .";
+  ". overview overview .";
 }
 
 .images {
   grid-area: images;
+}
+.overview {
+  grid-area: overview;
+  text-align: center;
+  background-color: #ededed;
+  padding: 75px;
 }
 
 .images > img  {

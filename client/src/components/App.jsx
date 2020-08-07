@@ -3,6 +3,7 @@ import Images from './Images';
 import Info from './Info';
 import Styles from './Styles';
 import AddToCart from './AddToCart';
+import Overview from './Overview';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
         <div className="styles"><Styles /></div>
         <div className="images"><Images /></div>
         <div className="a2c"><AddToCart /></div>
+        <div className="overview"><Overview /></div>
       </div>
     );
   }
