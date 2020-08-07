@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Images = () => (
-  <img src="/Users/UtkarshSingh/HRSEI/productDetail/broncos.jpg" alt="random" />
+  <img src="https://source.unsplash.com/random/800x800" alt="random" />
 
 );
 

@@ -13,12 +13,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="info"><Info /></div>
-        <div className="styles"><Styles /></div>
-        <div className="images"><Images /></div>
-        <div className="a2c"><AddToCart /></div>
-        <div className="overview"><Overview /></div>
+      <div id="app">
+        <nav id="nav">Logo</nav>
+        <div className="container">
+          <div className="info"><Info /></div>
+          <div className="styles"><Styles /></div>
+          <div className="images"><Images /></div>
+          <div className="a2c"><AddToCart /></div>
+          <div className="overview"><Overview /></div>
+        </div>
       </div>
     );
   }
