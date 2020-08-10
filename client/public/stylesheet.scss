@@ -1,0 +1,136 @@
+
+.container {
+  display: grid;
+  grid-template-columns: [start] 8% [line1] 52% [line2] 32% [line3] 8% [end];
+  grid-template-rows: [start] 25px [row1-start] 185px [row1-end row2-start] 185px [row2-end row3-start] 185px [row3-end] 75px [end];
+  gap: 20px;
+  grid-template-areas:
+  ". . . ."
+  ". images info ."
+  ". images styles ."
+  ". images a2c ."
+  ". overview overview .";
+}
+
+.images {
+  grid-area: images;
+}
+.overview {
+  grid-area: overview;
+  text-align: center;
+  background-color: #ededed;
+  padding: 75px;
+}
+
+.images > img  {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.info {
+  grid-area: info;
+  text-align: left;
+  padding: 5px;
+}
+.styles {
+  grid-area: styles;
+  text-align: center;
+  background-color: #ededed;
+  padding: 75px;
+}
+.a2c {
+  grid-area: a2c;
+  text-align: center;
+  background-color: #ededed;
+  padding: 75px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  color: darkslategrey
+}
+
+.infoContainer #rating {
+  margin-top: 10px;
+  margin-bottom: 22px;
+}
+.infoContainer #category {
+  margin-top: 0px;
+  margin-bottom: 2px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+  font-size-adjust: initial;
+}
+.infoContainer #name {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 5.0vh;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size-adjust: initial;
+  height: 40px;
+}
+
+.infoContainer #price {
+  margin-top: 55px;
+  margin-bottom: 0px;
+  font-style: italic;
+  font-family: monospace;
+  font-size: 19px;
+  font-size-adjust: initial;
+}
+#rating {
+  display: flex;
+  gap: 11px;
+}
+
+:root {
+  --star-size: 18px;
+  --star-color: rgb(212, 212, 212);
+  --star-background: rgb(94, 94, 94);
+}
+
+.Stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+#allReviews {
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center
+}
+
+#salePrice {
+  color: red;
+}
+
+#origPrice {
+  text-decoration: line-through;
+}
+
+#social {
+  margin-top: 55px;
+  display: flex;
+}
+
+#PriceSocial {
+  display: flex;
+  justify-content: space-between;
+}
+
