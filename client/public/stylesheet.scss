@@ -1,7 +1,7 @@
 
 .container {
   display: grid;
-  grid-template-columns: [start] 8% [line1] 52% [line2] 32% [line3] 8% [end];
+  grid-template-columns: [start] auto [line1] 52% [line2] 28% [line3] auto [end];
   grid-template-rows: [start] 25px [row1-start] 185px [row1-end row2-start] 185px [row2-end row3-start] 185px [row3-end] 75px [end];
   gap: 20px;
   grid-template-areas:
@@ -34,18 +34,17 @@
 }
 .styles {
   grid-area: styles;
-  text-align: center;
-  background-color: #ededed;
-  padding: 75px;
+  text-align: left;
+  padding: 5px;
+  margin-top: 10px;
 }
 .a2c {
   grid-area: a2c;
   text-align: center;
-  background-color: #ededed;
   padding: 75px;
 }
 
-.infoContainer {
+.componentContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -53,18 +52,18 @@
   color: darkslategrey
 }
 
-.infoContainer #rating {
+.componentContainer #rating {
   margin-top: 10px;
   margin-bottom: 22px;
 }
-.infoContainer #category {
+.componentContainer #category {
   margin-top: 0px;
   margin-bottom: 2px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 17px;
   font-size-adjust: initial;
 }
-.infoContainer #name {
+.componentContainer #name {
   margin-top: 0px;
   margin-bottom: 5px;
   font-weight: 700;
@@ -74,7 +73,7 @@
   height: 40px;
 }
 
-.infoContainer #price {
+.componentContainer #price {
   margin-top: 55px;
   margin-bottom: 0px;
   font-style: italic;
@@ -134,3 +133,50 @@
   justify-content: space-between;
 }
 
+#styleName {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+}
+
+#selectorButtons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 11px;
+  row-gap: 6px;
+  padding-top: 15px;
+  margin-right: 95px;
+}
+
+#selectorButtons button {
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: relative;
+}
+
+#selectorButtons button:focus {
+  outline: 0;
+}
+
+body i {
+  font-family:'FontAwesome'!important;
+  }
+
+.overlay {
+  position: absolute;
+  left: 72%;
+  bottom: 75%;
+}
+
+.fa-check-circle {
+  color: black;
+  font-size: 23px;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
