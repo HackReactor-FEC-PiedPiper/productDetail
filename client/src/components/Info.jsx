@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const Info = ({
   product, selectedStyle, sku, reviews,
@@ -11,7 +11,7 @@ const Info = ({
   const avgRating = sum / reviewCount;
 
   return (
-    <div className="infoContainer">
+    <div className="componentContainer">
       {reviewCount
         ? (
           <div id="rating">

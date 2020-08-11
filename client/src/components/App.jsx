@@ -14,6 +14,7 @@ class App extends React.Component {
       product: null,
       styles: null,
       selectedStyle: null,
+      styleID: null,
       selectedSKU: null,
       SKUs: null,
       thumbImage: null,
@@ -23,6 +24,7 @@ class App extends React.Component {
       reviews: null,
     };
     this.apiRequests = this.apiRequests.bind(this);
+    this.styleChangeHandler = this.styleChangeHandler.bind(this);
   }
 
   apiRequests(id = 5) {
@@ -48,6 +50,7 @@ class App extends React.Component {
         this.setState({
           styles: results,
           selectedStyle: selected,
+          styleID: selected.style_id,
         });
       })
       .then(() => {
@@ -70,17 +73,33 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.apiRequests();
+    this.apiRequests(1);
+  }
+
+  styleChangeHandler(id) {
+    let style;
+    for (let i = 0; i < this.state.styles.length; i++) {
+      if (this.state.styles[i].style_id === id) {
+        style = this.state.styles[i];
+        break;
+      }
+    }
+    this.setState({
+      styleID: style,
+      selectedStyle: style,
+    });
   }
 
   render() {
-    const { product, reviews } = this.state;
+    const {
+      product, reviews, styles, selectedStyle,
+    } = this.state;
     return (
       <div id="app">
         <nav id="nav">Logo</nav>
         <div className="container">
 
-          { product && reviews
+          { product && reviews && selectedStyle
             ? (
               <div className="info">
                 <Info
@@ -92,8 +111,17 @@ class App extends React.Component {
               </div>
             )
             : null}
-
-          <div className="styles"><Styles /></div>
+          { styles && selectedStyle
+            ? (
+              <div className="styles">
+                <Styles
+                  selectedStyle={this.state.selectedStyle}
+                  styles={this.state.styles}
+                  changeStyle={this.styleChangeHandler}
+                />
+              </div>
+            )
+            : null}
           <div className="images"><Images /></div>
           <div className="a2c"><AddToCart /></div>
           <div className="overview"><Overview /></div>

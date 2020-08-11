@@ -20,9 +20,9 @@ describe('App Parent Component', () => {
     expect(wrapper.find('.overview').text()).toBe('Overview');
   });
 
-  test(`Styles subcomponent should just contain text 'Styles' currently`, () => {
-    expect(wrapper.find('.styles').text()).toBe('Styles');
-  });
+  // test(`Styles subcomponent should just contain text 'Styles' currently`, () => {
+  //   expect(wrapper.find('.styles').text()).to('Styles');
+  // });
 
   test(`Add to Cart subcomponent should just contain text 'Add to Cart' currently`, () => {
     expect(wrapper.find('.a2c').text()).toBe('Add to Cart');
