@@ -1,15 +1,14 @@
-
 .container {
   display: grid;
   grid-template-columns: [start] auto [line1] 52% [line2] 28% [line3] auto [end];
   grid-template-rows: [start] 25px [row1-start] 185px [row1-end row2-start] 185px [row2-end row3-start] 185px [row3-end] 75px [end];
   gap: 20px;
   grid-template-areas:
-  ". . . ."
-  ". images info ."
-  ". images styles ."
-  ". images a2c ."
-  ". overview overview .";
+    ". . . ."
+    ". images info ."
+    ". images styles ."
+    ". images a2c ."
+    ". overview overview .";
 }
 
 .images {
@@ -18,11 +17,10 @@
 .overview {
   grid-area: overview;
   text-align: center;
-  background-color: #ededed;
   padding: 75px;
 }
 
-.images > img  {
+.images > img {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -40,8 +38,9 @@
 }
 .a2c {
   grid-area: a2c;
-  text-align: center;
-  padding: 75px;
+  text-align: left;
+  padding: 5px;
+  margin-top: 10px;
 }
 
 .componentContainer {
@@ -49,7 +48,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  color: darkslategrey
+  color: darkslategrey;
 }
 
 .componentContainer #rating {
@@ -67,8 +66,8 @@
   margin-top: 0px;
   margin-bottom: 5px;
   font-weight: 700;
-  font-size: 5.0vh;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 5vh;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size-adjust: initial;
   height: 40px;
 }
@@ -101,9 +100,13 @@
   line-height: 1;
 
   &::before {
-    content: '★★★★★';
+    content: "★★★★★";
     letter-spacing: 3px;
-    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    background: linear-gradient(
+      90deg,
+      var(--star-background) var(--percent),
+      var(--star-color) var(--percent)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -111,8 +114,8 @@
 
 #allReviews {
   font-size: 12px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
 }
 
 #salePrice {
@@ -162,8 +165,8 @@
 }
 
 body i {
-  font-family:'FontAwesome'!important;
-  }
+  font-family: "FontAwesome" !important;
+}
 
 .overlay {
   position: absolute;
@@ -179,4 +182,94 @@ body i {
 .break {
   flex-basis: 100%;
   height: 0;
+}
+
+.a2cforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: -15px;
+}
+
+.a2cforms select {
+  height: 55px;
+  border: 2px solid darkslategray;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  font-weight: 600;
+  color: darkslategray;
+  font-size: 20px;
+}
+
+.a2cforms select:focus {
+  outline: 0;
+  height: 55px;
+  border: 2px solid darkslategray;
+}
+
+#size {
+  width: 200px;
+}
+
+#qty {
+  width: 100px;
+}
+
+.a2cbtn button {
+  height: 55px;
+  border: 2px solid darkslategray;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-left: 10px;
+  margin-right: 10px;
+  font-weight: 600;
+  color: white;
+  font-size: 25px;
+  width: 325px;
+  background-color: darkslategray;
+  margin-top: 20px;
+}
+
+.a2cbtn button:focus {
+  outline: 0;
+}
+
+.a2cbtn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.a2cbtn span:after {
+  content: "\00bb";
+  position: relative;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.8s;
+}
+
+.a2cbtn button:hover {
+  box-shadow: 1px 1px black;
+}
+
+.a2cbtn button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.a2cbtn button:active {
+  box-shadow: 0 3px #666;
+}
+
+.select-instruction {
+  color: red;
+  margin-left: 25px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: larger;
+  font-style: italic;
 }
