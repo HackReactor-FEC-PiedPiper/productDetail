@@ -14,12 +14,9 @@ class App extends React.Component {
       product: null,
       styles: null,
       selectedStyle: null,
-      styleID: null,
       selectedSKU: 'default',
       selectedQTY: '-',
       SKUs: null,
-      thumbImage: null,
-      imageSelectedIndex: 0,
       styleArrImages: null,
       expandedView: false,
       reviews: null,
@@ -32,53 +29,6 @@ class App extends React.Component {
     this.skuChangeHandler = this.skuChangeHandler.bind(this);
     this.qtyChangeHandler = this.qtyChangeHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
-  }
-
-  apiRequests(id = 5) {
-    axios
-      .get(`http://52.26.193.201:3000/products/${id}`)
-      .then((res) => {
-        this.setState({
-          productID: id,
-          product: res.data,
-        });
-      })
-      .catch(() => console.log('error1'));
-
-    axios
-      .get(`http://52.26.193.201:3000/products/${id}/styles`)
-      .then((res) => res.data.results)
-      .then((results) => {
-        let selected = null;
-        for (let i = 0; i < results.length; i++) {
-          if (results[i]['default?']) {
-            selected = results[i];
-            break;
-          }
-        }
-        this.setState({
-          styles: results,
-          selectedStyle: selected,
-          styleID: selected.style_id,
-        });
-      })
-      .then(() => {
-        this.setState({
-          SKUs: this.state.selectedStyle.skus,
-          thumbImage: this.state.selectedStyle.photos[0].thumbnail_url,
-          styleArrImages: this.state.selectedStyle.photos,
-        });
-      })
-      .catch(() => console.log('error2'));
-
-    axios
-      .get(`http://52.26.193.201:3000/reviews/${id}/list`)
-      .then((res) => {
-        this.setState({
-          reviews: res.data,
-        });
-      })
-      .catch(() => console.log('error3'));
   }
 
   componentDidMount() {
@@ -94,12 +44,13 @@ class App extends React.Component {
       }
     }
     this.setState({
-      styleID: style,
+      styleID: style.style_id,
       selectedStyle: style,
       SKUs: style.skus,
       selectedSKU: 'default',
       selectedQTY: '-',
       showSelectInstruction: false,
+      styleArrImages: style.photos,
     });
   }
 
@@ -151,6 +102,7 @@ class App extends React.Component {
       SKUs,
       selectedQTY,
       showSelectInstruction,
+      styleArrImages,
     } = this.state;
     return (
       <div id="app">
@@ -190,9 +142,11 @@ class App extends React.Component {
               />
             </div>
           ) : null}
-          <div className="images">
-            <Images />
-          </div>
+          {styleArrImages ? (
+            <div className="images">
+              <Images photos={styleArrImages} />
+            </div>
+          ) : null}
           <div className="overview">
             <Overview />
           </div>
