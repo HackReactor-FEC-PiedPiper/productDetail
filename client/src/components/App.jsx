@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import Images from './Images';
 import Info from './Info';
 import Styles from './Styles';
@@ -14,12 +15,9 @@ class App extends React.Component {
       product: null,
       styles: null,
       selectedStyle: null,
-      styleID: null,
       selectedSKU: 'default',
       selectedQTY: '-',
       SKUs: null,
-      thumbImage: null,
-      imageSelectedIndex: 0,
       styleArrImages: null,
       expandedView: false,
       reviews: null,
@@ -27,11 +25,17 @@ class App extends React.Component {
       showSelectInstruction: false,
     };
     this.skuSelectRef = React.createRef();
+    this.thumbnailScrollRef = React.createRef();
     this.apiRequests = this.apiRequests.bind(this);
     this.styleChangeHandler = this.styleChangeHandler.bind(this);
     this.skuChangeHandler = this.skuChangeHandler.bind(this);
     this.qtyChangeHandler = this.qtyChangeHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
+    this.scrollClickHandler = this.scrollClickHandler.bind(this);
+  }
+
+  componentDidMount() {
+    this.apiRequests();
   }
 
   apiRequests(id = 5) {
@@ -81,10 +85,6 @@ class App extends React.Component {
       .catch(() => console.log('error3'));
   }
 
-  componentDidMount() {
-    this.apiRequests(1);
-  }
-
   styleChangeHandler(id) {
     let style;
     for (let i = 0; i < this.state.styles.length; i++) {
@@ -94,12 +94,13 @@ class App extends React.Component {
       }
     }
     this.setState({
-      styleID: style,
+      styleID: style.style_id,
       selectedStyle: style,
       SKUs: style.skus,
       selectedSKU: 'default',
       selectedQTY: '-',
       showSelectInstruction: false,
+      styleArrImages: style.photos,
     });
   }
 
@@ -141,6 +142,14 @@ class App extends React.Component {
     }
   }
 
+  scrollClickHandler(direction) {
+    if (direction === 'right') {
+      this.thumbnailScrollRef.current.scrollLeft += 30;
+    } else {
+      this.thumbnailScrollRef.current.scrollLeft += -30;
+    }
+  }
+
   render() {
     const {
       product,
@@ -151,6 +160,7 @@ class App extends React.Component {
       SKUs,
       selectedQTY,
       showSelectInstruction,
+      styleArrImages,
     } = this.state;
     return (
       <div id="app">
@@ -190,9 +200,15 @@ class App extends React.Component {
               />
             </div>
           ) : null}
-          <div className="images">
-            <Images />
-          </div>
+          {styleArrImages ? (
+            <div className="images">
+              <Images
+                photos={styleArrImages}
+                thumbnailScrollRef={this.thumbnailScrollRef}
+                scrollClick={this.scrollClickHandler}
+              />
+            </div>
+          ) : null}
           <div className="overview">
             <Overview />
           </div>
