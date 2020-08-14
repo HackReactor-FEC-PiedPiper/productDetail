@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import Images from './Images';
 import Info from './Info';
 import Styles from './Styles';
