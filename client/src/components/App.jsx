@@ -24,15 +24,64 @@ class App extends React.Component {
       showSelectInstruction: false,
     };
     this.skuSelectRef = React.createRef();
+    this.thumbnailScrollRef = React.createRef();
     this.apiRequests = this.apiRequests.bind(this);
     this.styleChangeHandler = this.styleChangeHandler.bind(this);
     this.skuChangeHandler = this.skuChangeHandler.bind(this);
     this.qtyChangeHandler = this.qtyChangeHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
+    this.scrollClickHandler = this.scrollClickHandler.bind(this);
   }
 
   componentDidMount() {
-    this.apiRequests(1);
+    this.apiRequests();
+  }
+
+  apiRequests(id = 5) {
+    axios
+      .get(`http://52.26.193.201:3000/products/${id}`)
+      .then((res) => {
+        this.setState({
+          productID: id,
+          product: res.data,
+        });
+      })
+      .catch(() => console.log('error1'));
+
+    axios
+      .get(`http://52.26.193.201:3000/products/${id}/styles`)
+      .then((res) => res.data.results)
+      .then((results) => {
+        let selected = null;
+        for (let i = 0; i < results.length; i++) {
+          if (results[i]['default?']) {
+            selected = results[i];
+            break;
+          }
+        }
+        this.setState({
+          styles: results,
+          selectedStyle: selected,
+          styleID: selected.style_id,
+        });
+      })
+      .then(() => {
+        this.setState({
+          SKUs: this.state.selectedStyle.skus,
+          thumbImage: this.state.selectedStyle.photos[0].thumbnail_url,
+          styleArrImages: this.state.selectedStyle.photos,
+        });
+      })
+      .catch(() => console.log('error2'));
+
+    axios
+      .get(`http://52.26.193.201:3000/reviews/${id}/list`)
+      .then((res) => {
+        this.setState({
+          reviews: res.data,
+        });
+      })
+      .catch(() => console.log('error3'));
   }
 
   styleChangeHandler(id) {
@@ -92,6 +141,14 @@ class App extends React.Component {
     }
   }
 
+  scrollClickHandler(direction) {
+    if (direction === 'right') {
+      this.thumbnailScrollRef.current.scrollLeft += 30;
+    } else {
+      this.thumbnailScrollRef.current.scrollLeft += -30;
+    }
+  }
+
   render() {
     const {
       product,
@@ -144,7 +201,11 @@ class App extends React.Component {
           ) : null}
           {styleArrImages ? (
             <div className="images">
-              <Images photos={styleArrImages} />
+              <Images
+                photos={styleArrImages}
+                thumbnailScrollRef={this.thumbnailScrollRef}
+                scrollClick={this.scrollClickHandler}
+              />
             </div>
           ) : null}
           <div className="overview">
