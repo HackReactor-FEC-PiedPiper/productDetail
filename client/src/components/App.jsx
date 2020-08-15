@@ -6,7 +6,7 @@ import Info from './Info';
 import Styles from './Styles';
 import AddToCart from './AddToCart';
 import Overview from './Overview';
-import ImagesModal from './ImagesModal';
+// import ImagesModal from './ImagesModal';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +24,6 @@ class App extends React.Component {
       reviews: null,
       cart: [],
       showSelectInstruction: false,
-      show: false,
     };
     this.skuSelectRef = React.createRef();
     this.thumbnailScrollRef = React.createRef();
@@ -34,8 +33,6 @@ class App extends React.Component {
     this.qtyChangeHandler = this.qtyChangeHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
     this.scrollClickHandler = this.scrollClickHandler.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
   }
 
   componentDidMount() {
@@ -154,14 +151,6 @@ class App extends React.Component {
     }
   }
 
-  showModal() {
-    this.setState({ show: true });
-  }
-
-  hideModal() {
-    this.setState({ show: false });
-  }
-
   render() {
     const {
       product,
@@ -173,13 +162,11 @@ class App extends React.Component {
       selectedQTY,
       showSelectInstruction,
       styleArrImages,
-      show,
     } = this.state;
     return (
       <div id="app">
         <nav id="nav">Logo</nav>
         <div className="container">
-          <ImagesModal show={show} handleClose={this.hideModal} />
           {product && reviews && selectedStyle ? (
             <div className="info">
               <Info
@@ -220,7 +207,7 @@ class App extends React.Component {
                 photos={styleArrImages}
                 thumbnailScrollRef={this.thumbnailScrollRef}
                 scrollClick={this.scrollClickHandler}
-                showModal={this.showModal}
+                // showModal={this.showModal}
               />
             </div>
           ) : null}
