@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
+const Images = ({
+  photos, thumbnailScrollRef, scrollClick, showModal,
+}) => {
   const [selectedSlide, setSelectedSlide] = useState(1);
 
   const leftArrowClick = () => {
@@ -18,6 +20,7 @@ const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
       <ol className="carousel__viewport">
         {photos.map((photo, i) => (
           <li
+            onClick={() => console.log('clicked image')}
             key={i}
             id={`carousel__slide${i + 1}`}
             tabIndex="0"
@@ -48,6 +51,8 @@ const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
                 </a>
               </div>
             ) : null}
+            {' '}
+            <button id="expand" onClick={showModal} />
           </li>
         ))}
       </ol>
