@@ -53,8 +53,46 @@ const ImagesModal = ({
               </li>
             ))}
           </ol>
+          <button id="closeModal" onClick={handleClose}>
+            Close Expanded View
+          </button>
+          <button
+            onClick={() => scrollClick('left')}
+            id="prevThumbnails"
+            className="scrollThumbnails"
+          >
+            <i className="fas fa-arrow-left" />
+          </button>
+          <aside className="carousel__navigation">
+            <div id="thumbnailNavigation">
+              <ol className="carousel__navigation-list">
+                {photos.map((photo, i) => (
+                  <li key={i} className="carousel__navigation-item">
+                    <a
+                      onClick={() => setSelectedSlide(i + 1)}
+                      style={{ backgroundImage: `URL(${photo.thumbnail_url})` }}
+                      href={`#carousel__slide${i + 1}`}
+                      className={
+                        i + 1 === selectedSlide
+                          ? 'carousel__navigation-button-selected'
+                          : 'carousel__navigation-button'
+                      }
+                    >
+                      {`Go to slide ${i + 1}`}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
+          <button
+            onClick={() => scrollClick('right')}
+            id="nextThumbnails"
+            className="scrollThumbnails"
+          >
+            <i className="fas fa-arrow-right" />
+          </button>
         </section>
-        <button onClick={handleClose}>close</button>
       </section>
     </div>
   );

@@ -750,4 +750,24 @@ li {
 .display-none {
   display: none;
 }
+
+#closeModal {
+  position: relative;
+  bottom: 700px;
+  left: 1020px;
+  width: 130px;
+  height: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: lightblue;
+  border: 0.8mm solid darkslategray;
+  border-radius: 12%;
+}
+
+#closeModal:hover {
+  -webkit-box-shadow: 1px 1px 1px 1px;
+          box-shadow: 1px 1px 1px 1px;
+  cursor: pointer;
+}
 /*# sourceMappingURL=stylesheet.css.map */
