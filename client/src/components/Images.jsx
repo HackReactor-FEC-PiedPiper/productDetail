@@ -63,7 +63,11 @@ const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
                 </div>
               ) : null}
               {' '}
-              <button id="expand" onClick={showModal} />
+              <button
+                id="expand"
+                href={`#exp-carousel_slide${selectedSlide}`}
+                onClick={showModal}
+              />
             </li>
           ))}
         </ol>

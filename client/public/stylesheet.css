@@ -465,13 +465,13 @@ li {
 
 .exp-carousel {
   position: relative;
-  padding-top: 75%;
   -webkit-filter: drop-shadow(0 0 10px #0003);
           filter: drop-shadow(0 0 10px #0003);
   -webkit-perspective: 100px;
           perspective: 100px;
   height: 750px;
   width: 1031x;
+  top: 120px;
 }
 
 .carousel__viewport {
@@ -591,10 +591,40 @@ li {
   white-space: nowrap;
 }
 
+.exp-carousel__navigation {
+  position: fixed;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100px;
+  height: 350px;
+  top: 240px;
+  left: 990px;
+  overflow-y: scroll;
+  white-space: nowrap;
+  background-color: transparent;
+  z-index: 50;
+}
+
 .carousel__navigation-list,
 .carousel__navigation-item {
   display: inline-block;
   padding-left: 8px;
+}
+
+.exp-carousel__navigation-list,
+.exp-carousel__navigation-item {
+  display: block;
+  padding-top: 8px;
+}
+
+.exp-carousel__navigation-list {
+  height: 900px;
 }
 
 .carousel__navigation-button {
@@ -604,7 +634,7 @@ li {
   height: 3rem;
   background-color: #333;
   background-clip: content-box;
-  border: 4px solid darkslategray;
+  border: 3px solid darkslategray;
   font-size: 0;
   -webkit-transition: -webkit-transform 0.1s;
   transition: -webkit-transform 0.1s;
@@ -612,11 +642,42 @@ li {
   transition: transform 0.1s, -webkit-transform 0.1s;
 }
 
+.exp-carousel__navigation-button {
+  display: inline-block;
+  background-size: cover;
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: #333;
+  background-clip: content-box;
+  border: 2px solid darkslategray;
+  font-size: 0;
+  -webkit-transition: -webkit-transform 0.1s;
+  transition: -webkit-transform 0.1s;
+  transition: transform 0.1s;
+  transition: transform 0.1s, -webkit-transform 0.1s;
+  border-radius: 50%;
+}
+
 .carousel__navigation-button-selected {
   display: inline-block;
   background-size: cover;
   width: 3.2rem;
   height: 3.2rem;
+  background-color: #333;
+  background-clip: content-box;
+  border: 4px solid white;
+  font-size: 0;
+  -webkit-transition: -webkit-transform 0.1s;
+  transition: -webkit-transform 0.1s;
+  transition: transform 0.1s;
+  transition: transform 0.1s, -webkit-transform 0.1s;
+}
+
+.exp-carousel__navigation-button-selected {
+  display: inline-block;
+  background-size: cover;
+  width: 2.2rem;
+  height: 2.2rem;
   background-color: #333;
   background-clip: content-box;
   border: 4px solid white;
@@ -680,6 +741,10 @@ li {
   display: inline-block;
 }
 
+#exp-thumbnailNavigation {
+  display: block;
+}
+
 .scrollThumbnails {
   height: 25px;
   width: 25px;
@@ -733,16 +798,17 @@ li {
 
 .modal-main {
   position: fixed;
-  background: white;
+  background: transparent;
   width: 70%;
   height: 750px;
-  top: 50%;
+  top: 35%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
 .display-block {
+  position: fixed;
   display: block;
   z-index: 15;
 }
@@ -753,7 +819,6 @@ li {
 
 #closeModal {
   position: relative;
-  bottom: 700px;
   left: 1020px;
   width: 130px;
   height: 40px;
@@ -763,6 +828,7 @@ li {
   background-color: lightblue;
   border: 0.8mm solid darkslategray;
   border-radius: 12%;
+  bottom: 600px;
 }
 
 #closeModal:hover {
