@@ -104,7 +104,14 @@ const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
           <i className="fas fa-arrow-right" />
         </button>
       </section>
-      <ImagesModal show={show} handleClose={hideModal.bind(this)} />
+      <ImagesModal
+        show={show}
+        handleClose={hideModal.bind(this)}
+        photos={photos}
+        leftArrowClick={leftArrowClick}
+        rightArrowClick={rightArrowClick}
+        selectedSlide={selectedSlide}
+      />
     </div>
   );
 };

@@ -366,6 +366,15 @@ li {
   left: 30px;
 }
 
+.exp-carousel {
+  position: relative;
+  padding-top: 75%;
+  filter: drop-shadow(0 0 10px #0003);
+  perspective: 100px;
+  height: 750px;
+  width: 1031x;
+}
+
 .carousel__viewport {
   position: absolute;
   top: 0;
@@ -389,7 +398,26 @@ li {
   background-repeat: no-repeat;
 }
 
+.exp-carousel__slide {
+  position: relative;
+  align-content: center;
+  flex: 0 0 100%;
+  width: 100%;
+  counter-increment: item;
+  background-size: 1031px 790px;
+  background-repeat: no-repeat;
+}
+
 .carousel__slide:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -40%, 70px);
+  color: #fff;
+  font-size: 2em;
+}
+
+.exp-carousel__slide:before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -417,6 +445,10 @@ li {
   }
 
   .carousel__slide:last-child .carousel__snapper {
+    animation-name: tostart, snap;
+  }
+
+  .exp-carousel__slide:last-child .carousel__snapper {
     animation-name: tostart, snap;
   }
 }

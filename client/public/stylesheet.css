@@ -463,6 +463,17 @@ li {
   left: 30px;
 }
 
+.exp-carousel {
+  position: relative;
+  padding-top: 75%;
+  -webkit-filter: drop-shadow(0 0 10px #0003);
+          filter: drop-shadow(0 0 10px #0003);
+  -webkit-perspective: 100px;
+          perspective: 100px;
+  height: 750px;
+  width: 1031x;
+}
+
 .carousel__viewport {
   position: absolute;
   top: 0;
@@ -492,7 +503,30 @@ li {
   background-repeat: no-repeat;
 }
 
+.exp-carousel__slide {
+  position: relative;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  width: 100%;
+  counter-increment: item;
+  background-size: 1031px 790px;
+  background-repeat: no-repeat;
+}
+
 .carousel__slide:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -40%, 70px);
+          transform: translate3d(-50%, -40%, 70px);
+  color: #fff;
+  font-size: 2em;
+}
+
+.exp-carousel__slide:before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -524,6 +558,10 @@ li {
             animation-iteration-count: infinite;
   }
   .carousel__slide:last-child .carousel__snapper {
+    -webkit-animation-name: tostart, snap;
+            animation-name: tostart, snap;
+  }
+  .exp-carousel__slide:last-child .carousel__snapper {
     -webkit-animation-name: tostart, snap;
             animation-name: tostart, snap;
   }
