@@ -6,7 +6,6 @@ import Info from './Info';
 import Styles from './Styles';
 import AddToCart from './AddToCart';
 import Overview from './Overview';
-// import ImagesModal from './ImagesModal';
 
 class App extends React.Component {
   constructor(props) {
@@ -213,13 +212,14 @@ class App extends React.Component {
                 thumbnailScrollRef={this.thumbnailScrollRef}
                 expThumbnailScrollRef={this.expThumbnailScrollRef}
                 scrollClick={this.scrollClickHandler}
-                // showModal={this.showModal}
               />
             </div>
           ) : null}
-          <div className="overview">
-            <Overview />
-          </div>
+          {product ? (
+            <div className="overview">
+              <Overview product={product} />
+            </div>
+          ) : null}
         </div>
       </div>
     );

@@ -23,8 +23,22 @@
   -ms-grid-column: 3;
   grid-area: overview;
   text-align: center;
-  padding: 75px;
+  margin-top: -30px;
   overflow: scroll;
+  border: 1px solid darkslategray;
+  padding: 0px 10px 0px 10px;
+}
+
+#slogan {
+  text-align: left;
+  font-style: italic;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#description {
+  text-align: left;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
 }
 
 .images > img {
