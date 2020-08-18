@@ -27,6 +27,7 @@ class App extends React.Component {
     };
     this.skuSelectRef = React.createRef();
     this.thumbnailScrollRef = React.createRef();
+    this.expThumbnailScrollRef = React.createRef();
     this.apiRequests = this.apiRequests.bind(this);
     this.styleChangeHandler = this.styleChangeHandler.bind(this);
     this.skuChangeHandler = this.skuChangeHandler.bind(this);
@@ -146,8 +147,12 @@ class App extends React.Component {
   scrollClickHandler(direction) {
     if (direction === 'right') {
       this.thumbnailScrollRef.current.scrollLeft += 30;
-    } else {
+    } else if (direction === 'left') {
       this.thumbnailScrollRef.current.scrollLeft += -30;
+    } else if (direction === 'top') {
+      this.expThumbnailScrollRef.current.scrollTop += -30;
+    } else if (direction === 'bottom') {
+      this.expThumbnailScrollRef.current.scrollTop += 30;
     }
   }
 
@@ -206,6 +211,7 @@ class App extends React.Component {
               <Images
                 photos={styleArrImages}
                 thumbnailScrollRef={this.thumbnailScrollRef}
+                expThumbnailScrollRef={this.expThumbnailScrollRef}
                 scrollClick={this.scrollClickHandler}
                 // showModal={this.showModal}
               />

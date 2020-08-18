@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import ImagesModal from './ImagesModal';
 
-const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
+const Images = ({
+  photos,
+  thumbnailScrollRef,
+  scrollClick,
+  expThumbnailScrollRef,
+}) => {
   const [selectedSlide, setSelectedSlide] = useState(1);
   const [show, setShow] = useState(false);
 
@@ -112,9 +117,10 @@ const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
         show={show}
         handleClose={hideModal.bind(this)}
         photos={photos}
-        leftArrowClick={leftArrowClick}
-        rightArrowClick={rightArrowClick}
         selectedSlide={selectedSlide}
+        expThumbnailScrollRef={expThumbnailScrollRef}
+        scrollClick={scrollClick}
+        selectedPhoto={photos[selectedSlide - 1]}
       />
     </div>
   );

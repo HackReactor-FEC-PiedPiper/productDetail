@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ImagesModal = ({
   handleClose,
   show,
   photos,
-  leftArrowClick,
-  rightArrowClick,
   selectedSlide,
+  expThumbnailScrollRef,
+  scrollClick,
+  selectedPhoto,
 }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+
   const [expSelectedSlide, setExpSelectedSlide] = useState(selectedSlide);
+
+  const leftArrowClick = () => {
+    scrollClick('top');
+    setExpSelectedSlide(expSelectedSlide - 1);
+  };
+
+  const rightArrowClick = () => {
+    scrollClick('bottom');
+    setExpSelectedSlide(expSelectedSlide + 1);
+  };
+
+  useEffect(() => {
+    setExpSelectedSlide(selectedSlide);
+  }, []);
 
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
-        <aside className="exp-carousel__navigation">
+        <aside ref={expThumbnailScrollRef} className="exp-carousel__navigation">
           <div id="exp-thumbnailNavigation">
             <ol className="exp-carousel__navigation-list">
               {photos.map((photo, i) => (
@@ -38,6 +54,22 @@ const ImagesModal = ({
         </aside>
         <section className="exp-carousel" aria-label="Gallery">
           <ol className="carousel__viewport">
+            <li
+              id={`exp-carousel__slide${0}`}
+              tabIndex="0"
+              style={{ backgroundImage: `URL(${selectedPhoto.url})` }}
+              className="exp-carousel__slide"
+            >
+              <div className="carousel_snapper">
+                <a
+                  onClick={rightArrowClick}
+                  href={`#exp-carousel__slide${1}`}
+                  className="carousel__next"
+                >
+                  Go to next slide
+                </a>
+              </div>
+            </li>
             {photos.map((photo, i) => (
               <li
                 onClick={() => console.log('clicked image')}
@@ -47,14 +79,14 @@ const ImagesModal = ({
                 style={{ backgroundImage: `URL(${photos[i].url})` }}
                 className="exp-carousel__slide"
               >
-                {selectedSlide > 1 ? (
+                {expSelectedSlide > 1 ? (
                   <div className="carousel_snapper">
                     <a
                       onClick={leftArrowClick}
                       href={
                         i > 0
-                          ? `#carousel__slide${i}`
-                          : `#carousel__slide${i + 1}`
+                          ? `#exp-carousel__slide${i}`
+                          : `#exp-carousel__slide${i + 1}`
                       }
                       className="carousel__prev"
                     >
@@ -62,11 +94,11 @@ const ImagesModal = ({
                     </a>
                   </div>
                 ) : null}
-                {selectedSlide < photos.length ? (
+                {expSelectedSlide < photos.length ? (
                   <div className="carousel_snapper">
                     <a
                       onClick={rightArrowClick}
-                      href={`#carousel__slide${i + 2}`}
+                      href={`#exp-carousel__slide${i + 2}`}
                       className="carousel__next"
                     >
                       Go to next slide
