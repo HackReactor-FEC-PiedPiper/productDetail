@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import ImagesModal from './ImagesModal';
 
-const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
+const Images = ({
+  photos,
+  thumbnailScrollRef,
+  scrollClick,
+  expThumbnailScrollRef,
+}) => {
   const [selectedSlide, setSelectedSlide] = useState(1);
   const [show, setShow] = useState(false);
 
@@ -63,7 +68,11 @@ const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
                 </div>
               ) : null}
               {' '}
-              <button id="expand" onClick={showModal} />
+              <button
+                id="expand"
+                href={`#exp-carousel_slide${selectedSlide}`}
+                onClick={showModal}
+              />
             </li>
           ))}
         </ol>
@@ -104,7 +113,15 @@ const Images = ({ photos, thumbnailScrollRef, scrollClick }) => {
           <i className="fas fa-arrow-right" />
         </button>
       </section>
-      <ImagesModal show={show} handleClose={hideModal.bind(this)} />
+      <ImagesModal
+        show={show}
+        handleClose={hideModal.bind(this)}
+        photos={photos}
+        selectedSlide={selectedSlide}
+        expThumbnailScrollRef={expThumbnailScrollRef}
+        scrollClick={scrollClick}
+        selectedPhoto={photos[selectedSlide - 1]}
+      />
     </div>
   );
 };
