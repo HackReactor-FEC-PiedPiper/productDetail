@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Images from './Images';
@@ -36,7 +37,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.apiRequests();
+    this.apiRequests(this.props.match.params.productId);
   }
 
   apiRequests(id = 5) {

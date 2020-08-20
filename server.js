@@ -1,9 +1,18 @@
 var express = require("express");
 var app = express();
-const bodyParser = app.use(express.json());
+const path = require("path");
+const PORT = process.env.PORT || 3001;
 
-app.use(express.static(__dirname + "/client/public"));
+app.use(express.static("client/public"));
 
-app.listen(3000, () => {
-  console.log("listening on port 3000");
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/public/index.html"), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });

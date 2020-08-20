@@ -1,38 +1,39 @@
-
 module.exports = {
-  entry: __dirname + '/client/src/index.jsx',
+  entry: __dirname + "/client/src/index.jsx",
   output: {
-    filename: 'bundle.js',
-    path: __dirname + '/client/public'
+    filename: "bundle.js",
+    path: __dirname + "/client/public",
   },
   module: {
     rules: [
       {
-        enforce: 'pre',
+        enforce: "pre",
         test: [/\.jsx$/],
         exclude: /node_modules/,
-        loader: 'eslint-loader',
+        loader: "eslint-loader",
         options: {
           fix: true,
-        }
+        },
       },
       {
         test: [/\.jsx$/],
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
-          }
-        }
-      }
-    ]
+            presets: ["@babel/preset-react", "@babel/preset-env"],
+          },
+        },
+      },
+    ],
   },
   devServer: {
-    publicPath: '/assets/',
-    contentBase: __dirname + '/client/public'
+    publicPath: "/assets/",
+    contentBase: __dirname + "/client/public",
+    compress: true,
+    disableHostCheck: true,
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: [".js", ".jsx"],
+  },
 };
